@@ -14,12 +14,7 @@ useHead({
   link: [
     { rel: 'preconnect', href: 'https://fonts.googleapis.com', crossorigin: 'anonymous' },
     { rel: 'dns-prefetch', href: 'https://cdn.example.com' },
-    { rel: 'preload', href: '/styles.css', as: 'style' },
-    { rel: 'prefetch', href: '/next-page.html' }
   ],
-  script: [
-    { src: '/lazy-load.js', defer: true }
-  ]
 })
 
 const { fetchItems, createItem, updateItem, deleteItem } = useApi();
