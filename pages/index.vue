@@ -2,6 +2,26 @@
 import { ref, onMounted } from 'vue';
 import { useApi } from '~/composables/useApi';
 
+useHead({
+  title: 'Coba Frontend',
+  meta: [
+    { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
+    { name: 'theme-color', content: '#ffffff' },
+    { name: 'cache-control', content: 'public, max-age=31536000, immutable' },
+    { name: 'expires', content: 'Tue, 01 Jan 2030 00:00:00 GMT' },
+    { name: 'description', content: 'Deskripsi singkat website' }
+  ],
+  link: [
+    { rel: 'preconnect', href: 'https://fonts.googleapis.com', crossorigin: 'anonymous' },
+    { rel: 'dns-prefetch', href: 'https://cdn.example.com' },
+    { rel: 'preload', href: '/styles.css', as: 'style' },
+    { rel: 'prefetch', href: '/next-page.html' }
+  ],
+  script: [
+    { src: '/lazy-load.js', defer: true }
+  ]
+})
+
 const { fetchItems, createItem, updateItem, deleteItem } = useApi();
 const items = ref([]);
 const newItem = ref({ name: '', description: '' });
@@ -30,12 +50,15 @@ const removeItem = async (id) => {
         <input v-model="newItem.description" placeholder="Deskripsi" />
         <button @click="addItem">Tambah</button>
 
-        <ul>
-            <li v-for="item in items" :key="item._id">
-                {{ item.name }} - {{ item.description }}
-                <button @click="removeItem(item._id)">Hapus</button>
-            </li>
-        </ul>
+        <div>
+            <h5>Berita</h5>
+            <ul>
+                <li v-for="item in items" :key="item._id">
+                    {{ item.name }} - {{ item.description }}
+                    <button @click="removeItem(item._id)">Hapus</button>
+                </li>
+            </ul>
+        </div>
     </div>
 </template>
 
